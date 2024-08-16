@@ -4,15 +4,24 @@
 ---@field not_ Expectation
 ---@overload fun(value: any): Expectation
 local expect = {
+    ---@private
+    assert = function(self, pass, message, negMessage)
+        if not self.negated then
+            assert(pass, message)
+        else
+            assert(not pass, negMessage)
+        end
+    end,
+
     ---Expects `==` equality.
     ---@param other any
     toBe = function(self, other)
-        if self.negated then
-            assert(self.value ~= other, tostring(self.value) .. " and " .. tostring(other) .. " is equal.")
-        else
-            assert(self.value == other, tostring(self.value) .. " and " .. tostring(other) .. " is not equal.")
-        end
-    end
+        self:assert(
+            self.value == other,
+            tostring(self.value) .. " and " .. tostring(other) .. " is not equal.",
+            tostring(self.value) .. " and " .. tostring(other) .. " is equal."
+        )
+    end,
 }
 
 setmetatable(expect --[[@as table]], {

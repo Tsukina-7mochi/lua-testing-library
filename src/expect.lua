@@ -5,6 +5,9 @@
 ---@overload fun(value: any): Expectation
 local expect = {
     ---@private
+    ---@param pass boolean
+    ---@param message string
+    ---@param negMessage string
     assert = function(self, pass, message, negMessage)
         if not self.negated then
             assert(pass, message)
@@ -14,12 +17,20 @@ local expect = {
     end,
 
     ---Expects `==` equality.
-    ---@param other any
-    toBe = function(self, other)
+    ---@param expected any
+    toBe = function(self, expected)
         self:assert(
-            self.value == other,
-            tostring(self.value) .. " and " .. tostring(other) .. " is not equal.",
-            tostring(self.value) .. " and " .. tostring(other) .. " is equal."
+            self.value == expected,
+            string.format(
+                "expect(received).toBe(expected)\nExpected: %s\nActual: %s",
+                tostring(expected),
+                tostring(self.value)
+            ),
+            string.format(
+                "expect(received).toBe(expected)\nExpected not: %s\nActual: %s",
+                tostring(expected),
+                tostring(self.value)
+            )
         )
     end,
 }

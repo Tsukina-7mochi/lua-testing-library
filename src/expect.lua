@@ -33,6 +33,42 @@ local expect = {
             )
         )
     end,
+
+    ---Expects approximate equality of floating numbers.
+    ---@param number number
+    ---@param numDigits integer?
+    toBeCloseTo = function(self, number, numDigits)
+        if numDigits == nil then
+            numDigits = 2
+        end
+
+        local inf = 1 / 0
+
+        if self.value == inf and number == inf then
+            --pass
+            return
+        elseif self.value == -inf and number == -inf then
+            --pass
+            return
+        end
+
+        local actual = math.abs(self.value - number)
+        local expected = (10 ^ -(numDigits)) / 2
+
+        self:assert(
+            actual < expected,
+            string.format(
+                "expect(received).toBeCloseTo\nExpected diff: <%f\nActual:%f",
+                expected,
+                actual
+            ),
+            string.format(
+                "expect(received).toBeCloseTo\nExpected diff: >%f\nActual:%f",
+                expected,
+                actual
+            )
+        )
+    end,
 }
 
 setmetatable(expect --[[@as table]], {

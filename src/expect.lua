@@ -22,12 +22,12 @@ local expect = {
         self:assert(
             self.value == expected,
             string.format(
-                "expect(received).toBe(expected)\nExpected: %s\nActual: %s",
+                "expect(received):toBe(expected)\nExpected: %s\nActual: %s",
                 tostring(expected),
                 tostring(self.value)
             ),
             string.format(
-                "expect(received).toBe(expected)\nExpected not: %s\nActual: %s",
+                "expect(received).not_:toBe(expected)\nExpected not: %s\nActual: %s",
                 tostring(expected),
                 tostring(self.value)
             )
@@ -58,12 +58,12 @@ local expect = {
         self:assert(
             actual < expected,
             string.format(
-                "expect(received).toBeCloseTo\nExpected diff: <%f\nActual:%f",
+                "expect(received):toBeCloseTo\nExpected diff: <%f\nActual:%f",
                 expected,
                 actual
             ),
             string.format(
-                "expect(received).toBeCloseTo\nExpected diff: >%f\nActual:%f",
+                "expect(received).not_toBeCloseTo\nExpected diff: >%f\nActual:%f",
                 expected,
                 actual
             )
@@ -73,8 +73,8 @@ local expect = {
     toBeFalsy = function(self)
         self:assert(
             not self.value,
-            string.format("expect(received).toBeFalsy()\nReceived: %s", tostring(self.value)),
-            string.format("expect(received).not_.toBeFalsy()\nReceived: %s", tostring(self.value))
+            string.format("expect(received):toBeFalsy()\nReceived: %s", tostring(self.value)),
+            string.format("expect(received).not_:toBeFalsy()\nReceived: %s", tostring(self.value))
         )
     end,
 }

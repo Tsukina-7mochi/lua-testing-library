@@ -69,6 +69,14 @@ local expect = {
             )
         )
     end,
+
+    toBeFalsy = function(self)
+        self:assert(
+            not self.value,
+            string.format("expect(received).toBeFalsy()\nReceived: %s", tostring(self.value)),
+            string.format("expect(received).not_.toBeFalsy()\nReceived: %s", tostring(self.value))
+        )
+    end,
 }
 
 setmetatable(expect --[[@as table]], {

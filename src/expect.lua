@@ -77,6 +77,23 @@ local expect = {
             string.format("expect(received).not_:toBeFalsy()\nReceived: %s", tostring(self.value))
         )
     end,
+
+    ---@param another any
+    toBeGraterThan = function(self, another)
+        self:assert(
+            self.value > another,
+            string.format(
+                "expect(received):toBeGraterThan(number)\nExpected: >%s\nReceived: %s",
+                tostring(another),
+                tostring(self.value)
+            ),
+            string.format(
+                "expect(received).not_:toBeGraterThan(number)\nExpected: <=%s\nReceived: %s",
+                tostring(another),
+                tostring(self.value)
+            )
+        )
+    end,
 }
 
 setmetatable(expect --[[@as table]], {

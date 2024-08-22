@@ -52,12 +52,12 @@ function expect.toBe(self, expected)
     self:assert(
         self.value == expected,
         string.format(
-            "expect(received):toBe(expected)\nExpected: %s\nActual: %s",
+            "expect(received):toBe(expected)\nExpected: %s\nReceived: %s",
             tostring(expected),
             tostring(self.value)
         ),
         string.format(
-            "expect(received).not_:toBe(expected)\nExpected not: %s\nActual: %s",
+            "expect(received).not_:toBe(expected)\nExpected not: %s\nReceived: %s",
             tostring(expected),
             tostring(self.value)
         )
@@ -84,20 +84,20 @@ function expect.toBeCloseTo(self, number, numDigits)
         return
     end
 
-    local actual = math.abs(self.value - number)
+    local received = math.abs(self.value - number)
     local expected = (10 ^ -(numDigits)) / 2
 
     self:assert(
-        actual < expected,
+        received < expected,
         string.format(
-            "expect(received):toBeCloseTo\nExpected diff: <%f\nActual:%f",
+            "expect(received):toBeCloseTo\nExpected diff: <%f\nReceived:%f",
             expected,
-            actual
+            received
         ),
         string.format(
-            "expect(received).not_toBeCloseTo\nExpected diff: >%f\nActual:%f",
+            "expect(received).not_toBeCloseTo\nExpected diff: >%f\nReceived:%f",
             expected,
-            actual
+            received
         )
     )
 end

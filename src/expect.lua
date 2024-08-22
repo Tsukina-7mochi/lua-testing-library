@@ -102,6 +102,7 @@ function expect.toBeCloseTo(self, number, numDigits)
     )
 end
 
+---Expects falsy values: false and nil.
 function expect.toBeFalsy(self)
     assertExpectation(self)
 

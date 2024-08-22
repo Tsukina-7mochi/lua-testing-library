@@ -103,6 +103,17 @@ function expect.toBeCloseTo(self, number, numDigits)
 end
 
 ---Expects falsy values: false and nil.
+function expect.toBeTruthy(self)
+    assertExpectation(self)
+
+    self:assert(
+        not not self.value,
+        string.format("expect(received):toBeTruthy()\nReceived: %s", tostring(self.value)),
+        string.format("expect(received).not_:toBeTruthy()\nReceived: %s", tostring(self.value))
+    )
+end
+
+---Expects falsy values: false and nil.
 function expect.toBeFalsy(self)
     assertExpectation(self)
 

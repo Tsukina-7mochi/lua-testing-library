@@ -3,6 +3,7 @@ local describe = require("src.test").describe
 describe("nomality", function()
     require("test.expect.toBe")
     require("test.expect.toBeCloseTo")
+    require("test.expect.toBeTruthy")
     require("test.expect.toBeFalsy")
     require("test.expect.toBeGraterThan")
     require("test.expect.toBeGraterThanOrEqual")

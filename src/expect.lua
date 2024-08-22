@@ -139,12 +139,12 @@ function expect.toBeGraterThanOrEqual(self, another)
     self:assert(
         self.value >= another,
         string.format(
-            "expect(received):toBeGraterThan(number)\nExpected: >=%s\nReceived: %s",
+            "expect(received):toBeGraterThanOrEqual(number)\nExpected: >=%s\nReceived: %s",
             tostring(another),
             tostring(self.value)
         ),
         string.format(
-            "expect(received).not_:toBeGraterThan(number)\nExpected: <%s\nReceived: %s",
+            "expect(received).not_:toBeGraterThanOrEqual(number)\nExpected: <%s\nReceived: %s",
             tostring(another),
             tostring(self.value)
         )
@@ -158,12 +158,12 @@ function expect.toBeLessThan(self, another)
     self:assert(
         self.value < another,
         string.format(
-            "expect(received):toBeGraterThan(number)\nExpected: <%s\nReceived: %s",
+            "expect(received):toBeLessThan(number)\nExpected: <%s\nReceived: %s",
             tostring(another),
             tostring(self.value)
         ),
         string.format(
-            "expect(received).not_:toBeGraterThan(number)\nExpected: >=%s\nReceived: %s",
+            "expect(received).not_:toBeLessThan(number)\nExpected: >=%s\nReceived: %s",
             tostring(another),
             tostring(self.value)
         )
@@ -177,12 +177,12 @@ function expect.toBeLessThanOrEqual(self, another)
     self:assert(
         self.value <= another,
         string.format(
-            "expect(received):toBeGraterThan(number)\nExpected: <=%s\nReceived: %s",
+            "expect(received):toBeLessThanOrEqual(number)\nExpected: <=%s\nReceived: %s",
             tostring(another),
             tostring(self.value)
         ),
         string.format(
-            "expect(received).not_:toBeGraterThan(number)\nExpected: >%s\nReceived: %s",
+            "expect(received).not_:toBeLessThanOrEqual(number)\nExpected: >%s\nReceived: %s",
             tostring(another),
             tostring(self.value)
         )

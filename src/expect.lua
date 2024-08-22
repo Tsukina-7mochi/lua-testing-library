@@ -189,6 +189,22 @@ function expect.toBeLessThanOrEqual(self, another)
     )
 end
 
+function expect.toBeNil(self)
+    assertExpectation(self)
+
+    self:assert(
+        self.value == nil,
+        string.format(
+            "expect(received):toBeNil()\nReceived: %s",
+            tostring(self.value)
+        ),
+        string.format(
+            "expect(received).not_:toBeNil()\nReceived: %s",
+            tostring(self.value)
+        )
+    )
+end
+
 setmetatable(expect --[[@as table]], {
     __call = function(_, value)
         local obj = { value = value, negated = false }

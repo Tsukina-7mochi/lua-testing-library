@@ -216,6 +216,34 @@ function expect.toBeNil(self)
     )
 end
 
+---Expects table (array) to contain a item as `==` equality.
+---@param item any
+function expect.toContain(self, item)
+    assertExpectation(self)
+
+    local pass = false
+    if type(self.value) == "table" then
+        for _, v in ipairs(self.value) do
+            if v == item then
+                pass = true
+                break
+            end
+        end
+    end
+
+    self:assert(
+        pass,
+        string.format(
+            "expect(received):toContain(item)\nReceived: %s",
+            tostring(self.value)
+        ),
+        string.format(
+            "expect(received).not_:toContain(item)\nReceived: %s",
+            tostring(self.value)
+        )
+    )
+end
+
 setmetatable(expect --[[@as table]], {
     __call = function(_, value)
         local obj = { value = value, negated = false }

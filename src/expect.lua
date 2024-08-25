@@ -1,3 +1,5 @@
+local toDebugString = require("src.toDebugString")
+
 ---@class Expectation
 ---@field value any
 ---@field negated boolean
@@ -53,13 +55,13 @@ function expect.toBe(self, expected)
         self.value == expected,
         string.format(
             "expect(received):toBe(expected)\nExpected: %s\nReceived: %s",
-            tostring(expected),
-            tostring(self.value)
+            toDebugString(expected),
+            toDebugString(self.value)
         ),
         string.format(
             "expect(received).not_:toBe(expected)\nExpected not: %s\nReceived: %s",
-            tostring(expected),
-            tostring(self.value)
+            toDebugString(expected),
+            toDebugString(self.value)
         )
     )
 end
@@ -108,8 +110,8 @@ function expect.toBeTruthy(self)
 
     self:assert(
         not not self.value,
-        string.format("expect(received):toBeTruthy()\nReceived: %s", tostring(self.value)),
-        string.format("expect(received).not_:toBeTruthy()\nReceived: %s", tostring(self.value))
+        string.format("expect(received):toBeTruthy()\nReceived: %s", toDebugString(self.value)),
+        string.format("expect(received).not_:toBeTruthy()\nReceived: %s", toDebugString(self.value))
     )
 end
 
@@ -119,8 +121,8 @@ function expect.toBeFalsy(self)
 
     self:assert(
         not self.value,
-        string.format("expect(received):toBeFalsy()\nReceived: %s", tostring(self.value)),
-        string.format("expect(received).not_:toBeFalsy()\nReceived: %s", tostring(self.value))
+        string.format("expect(received):toBeFalsy()\nReceived: %s", toDebugString(self.value)),
+        string.format("expect(received).not_:toBeFalsy()\nReceived: %s", toDebugString(self.value))
     )
 end
 
@@ -132,13 +134,13 @@ function expect.toBeGraterThan(self, another)
         self.value > another,
         string.format(
             "expect(received):toBeGraterThan(number)\nExpected: >%s\nReceived: %s",
-            tostring(another),
-            tostring(self.value)
+            toDebugString(another),
+            toDebugString(self.value)
         ),
         string.format(
             "expect(received).not_:toBeGraterThan(number)\nExpected: <=%s\nReceived: %s",
-            tostring(another),
-            tostring(self.value)
+            toDebugString(another),
+            toDebugString(self.value)
         )
     )
 end
@@ -151,13 +153,13 @@ function expect.toBeGraterThanOrEqual(self, another)
         self.value >= another,
         string.format(
             "expect(received):toBeGraterThanOrEqual(number)\nExpected: >=%s\nReceived: %s",
-            tostring(another),
-            tostring(self.value)
+            toDebugString(another),
+            toDebugString(self.value)
         ),
         string.format(
             "expect(received).not_:toBeGraterThanOrEqual(number)\nExpected: <%s\nReceived: %s",
-            tostring(another),
-            tostring(self.value)
+            toDebugString(another),
+            toDebugString(self.value)
         )
     )
 end
@@ -170,13 +172,13 @@ function expect.toBeLessThan(self, another)
         self.value < another,
         string.format(
             "expect(received):toBeLessThan(number)\nExpected: <%s\nReceived: %s",
-            tostring(another),
-            tostring(self.value)
+            toDebugString(another),
+            toDebugString(self.value)
         ),
         string.format(
             "expect(received).not_:toBeLessThan(number)\nExpected: >=%s\nReceived: %s",
-            tostring(another),
-            tostring(self.value)
+            toDebugString(another),
+            toDebugString(self.value)
         )
     )
 end
@@ -189,13 +191,13 @@ function expect.toBeLessThanOrEqual(self, another)
         self.value <= another,
         string.format(
             "expect(received):toBeLessThanOrEqual(number)\nExpected: <=%s\nReceived: %s",
-            tostring(another),
-            tostring(self.value)
+            toDebugString(another),
+            toDebugString(self.value)
         ),
         string.format(
             "expect(received).not_:toBeLessThanOrEqual(number)\nExpected: >%s\nReceived: %s",
-            tostring(another),
-            tostring(self.value)
+            toDebugString(another),
+            toDebugString(self.value)
         )
     )
 end
@@ -207,11 +209,11 @@ function expect.toBeNil(self)
         self.value == nil,
         string.format(
             "expect(received):toBeNil()\nReceived: %s",
-            tostring(self.value)
+            toDebugString(self.value)
         ),
         string.format(
             "expect(received).not_:toBeNil()\nReceived: %s",
-            tostring(self.value)
+            toDebugString(self.value)
         )
     )
 end
@@ -235,11 +237,11 @@ function expect.toContain(self, item)
         pass,
         string.format(
             "expect(received):toContain(item)\nReceived: %s",
-            tostring(self.value)
+            toDebugString(self.value)
         ),
         string.format(
             "expect(received).not_:toContain(item)\nReceived: %s",
-            tostring(self.value)
+            toDebugString(self.value)
         )
     )
 end

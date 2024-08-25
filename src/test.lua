@@ -126,7 +126,9 @@ local function describe(name, func)
 
     if _ENV.__testContext.parent == nil then
         --dumpTest(_ENV.__testContext, 0)
-        performTest(_ENV.__testContext, 0)
+        if #performTest(_ENV.__testContext, 0) ~= 0 then
+            os.exit(1)
+        end
     else
         _ENV.__testContext = _ENV.__testContext.parent
     end

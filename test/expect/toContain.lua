@@ -22,4 +22,8 @@ describe("toContain", function()
     test("{ a = 1, b = 2, c = 3 } does not contain 1", function()
         expect({ a = 1, b = 2, c = 3 }).not_:toContain(1)
     end)
+
+    test("{ a = 1, b = 2, c = 3 } does not contain 1", function()
+        expect({ a = 1, b = 2, c = 3 }).not_:toContain(1)
+    end)
 end)

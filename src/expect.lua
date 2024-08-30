@@ -7,6 +7,36 @@ local toDebugString = require("src.toDebugString")
 ---@overload fun(value: any): Expectation
 local expect = {}
 
+---@param sub any
+---@param sup any
+---@return boolean
+local function isSubsetof(sub, sup)
+    if sub == sup then
+        return true
+    elseif type(sub) ~= type(sup) then
+        return false
+    end
+
+    if type(sub) ~= "table" then
+        return sub == sup
+    end
+
+    for key, value in pairs(sub) do
+        if not isSubsetof(value, sup[key]) then
+            return false
+        end
+    end
+
+    return true
+end
+
+---@param a any
+---@param b any
+---@return boolean
+local function equals(a, b)
+    return isSubsetof(a, b) and isSubsetof(b, a)
+end
+
 ---@param value any
 ---@return boolean
 local function isExpectation(value)
@@ -244,6 +274,47 @@ function expect.toContain(self, item)
             toDebugString(self.value)
         )
     )
+end
+
+---@param self Expectation
+---@param another any
+function expect.toEqual(self, another)
+    assertExpectation(self)
+
+    self:assert(
+        equals(self.value, another),
+        string.format(
+            "expect(received):toEqual(item)\nExpected: %s\nReceived: %s",
+            toDebugString(another),
+            toDebugString(self.value)
+        ),
+        string.format(
+            "expect(received).not_:toEqual(item)\nExpected: not %s\nReceived: %s",
+            toDebugString(another),
+            toDebugString(self.value)
+        )
+    )
+end
+
+function expect.toHaveLength(self, length)
+    assertExpectation(self)
+
+    self:assert(
+        #self.value == length,
+        string.format(
+            "expect(received:toHaveLength(length)\nExpected: %d\nReceived: %d, %s",
+            length,
+            #self.value,
+            toDebugString(self.value)
+        ),
+        string.format(
+            "expect(received.not_:toHaveLength(length)\nExpected: not %d\nReceived: %d, %s",
+            length,
+            #self.value,
+            toDebugString(self.value)
+        )
+    )
+
 end
 
 setmetatable(expect --[[@as table]], {

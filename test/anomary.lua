@@ -86,4 +86,12 @@ describe("anomary", function()
     test("expect.not.toContain", function()
         expect({ 1, 2, 3 }).not_:toContain(1)
     end)
+
+    test("expect.toEqual", function()
+        expect({ a = { b = 1 } }):toEqual({ a = { b = 2 } })
+    end)
+
+    test("expect.not.toEqual", function()
+        expect({ a = { b = 1 } }).not_:toEqual({ a = { b = 1 } })
+    end)
 end)

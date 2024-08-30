@@ -94,4 +94,12 @@ describe("anomary", function()
     test("expect.not.toEqual", function()
         expect({ a = { b = 1 } }).not_:toEqual({ a = { b = 1 } })
     end)
+
+    test("expect.toHaveLength", function()
+        expect("123"):toHaveLength(4)
+    end)
+
+    test("expect.not.toHaveLength", function()
+        expect("123").not_:toHaveLength(3)
+    end)
 end)

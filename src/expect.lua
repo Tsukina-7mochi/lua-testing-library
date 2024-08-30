@@ -296,25 +296,26 @@ function expect.toEqual(self, another)
     )
 end
 
+---@param self Expectation
+---@param length number
 function expect.toHaveLength(self, length)
     assertExpectation(self)
 
     self:assert(
         #self.value == length,
         string.format(
-            "expect(received:toHaveLength(length)\nExpected: %d\nReceived: %d, %s",
+            "expect(received):toHaveLength(length)\nExpected: %d\nReceived: %d, %s",
             length,
             #self.value,
             toDebugString(self.value)
         ),
         string.format(
-            "expect(received.not_:toHaveLength(length)\nExpected: not %d\nReceived: %d, %s",
+            "expect(received).not_:toHaveLength(length)\nExpected: not %d\nReceived: %d, %s",
             length,
             #self.value,
             toDebugString(self.value)
         )
     )
-
 end
 
 setmetatable(expect --[[@as table]], {

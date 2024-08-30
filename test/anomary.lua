@@ -102,4 +102,12 @@ describe("anomary", function()
     test("expect.not.toHaveLength", function()
         expect("123").not_:toHaveLength(3)
     end)
+
+    test("expect.toMatch", function()
+        expect("abc123a"):toMatch("^%l+%d+$")
+    end)
+
+    test("expect.not.toMatch", function()
+        expect("abc123").not_:toMatch("^%l+%d+$")
+    end)
 end)

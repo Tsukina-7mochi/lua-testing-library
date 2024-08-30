@@ -318,6 +318,41 @@ function expect.toHaveLength(self, length)
     )
 end
 
+---@param self Expectation
+---@param pattern string
+function expect.toMatch(self, pattern)
+    assertExpectation(self)
+
+    assert(
+        type(self.value) == "string",
+        string.format(
+            "expect(received):toMatch(pattern)\nReceived value must be string.\nReceived: %s",
+            self.value
+        )
+    )
+    assert(
+        type(pattern) == "string",
+        string.format(
+            "expect(received):toMatch(pattern)\nPattern must be string.",
+            self.value
+        )
+    )
+
+    self:assert(
+        string.find(self.value, pattern) ~= nil,
+        string.format(
+            "expect(received):toMatch(pattern)\nPattern: %s\nReceived: %s",
+            pattern,
+            self.value
+        ),
+        string.format(
+            "expect(received).not_:toMatch(pattern)\nPattern: %s\nReceived: %s",
+            pattern,
+            self.value
+        )
+    )
+end
+
 setmetatable(expect --[[@as table]], {
     __call = function(_, value)
         local obj = { value = value, negated = false }

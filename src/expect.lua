@@ -10,7 +10,7 @@ local expect = {}
 ---@param sub any
 ---@param sup any
 ---@return boolean
-local function isSubsetof(sub, sup)
+local function isSubtypeOfOrEqualsTo(sub, sup)
     if sub == sup then
         return true
     elseif type(sub) ~= type(sup) then
@@ -22,7 +22,7 @@ local function isSubsetof(sub, sup)
     end
 
     for key, value in pairs(sub) do
-        if not isSubsetof(value, sup[key]) then
+        if not isSubtypeOfOrEqualsTo(value, sup[key]) then
             return false
         end
     end
@@ -34,7 +34,7 @@ end
 ---@param b any
 ---@return boolean
 local function equals(a, b)
-    return isSubsetof(a, b) and isSubsetof(b, a)
+    return isSubtypeOfOrEqualsTo(a, b) and isSubtypeOfOrEqualsTo(b, a)
 end
 
 ---@param value any
@@ -349,6 +349,26 @@ function expect.toMatch(self, pattern)
             "expect(received).not_:toMatch(pattern)\nPattern: %s\nReceived: %s",
             pattern,
             self.value
+        )
+    )
+end
+
+---@param self Expectation
+---@param object any
+function expect.toMatchObject(self, object)
+    assertExpectation(self)
+
+    self:assert(
+        isSubtypeOfOrEqualsTo(object, self.value),
+        string.format(
+            "expect(received).toMatchObject(object)\nExpected: supertype of or equals to %s\nReceived: %s",
+            toDebugString(object),
+            toDebugString(self.value)
+        ),
+        string.format(
+            "expect(received).toMatchObject(object)\nExpected: subtype of %s\nReceived: %s",
+            toDebugString(object),
+            toDebugString(self.value)
         )
     )
 end

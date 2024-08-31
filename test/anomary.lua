@@ -110,4 +110,12 @@ describe("anomary", function()
     test("expect.not.toMatch", function()
         expect("abc123").not_:toMatch("^%l+%d+$")
     end)
+
+    test("expect.toMatchObject", function()
+        expect({ a = 1 }):toMatchObject({ a = 1, b = 2 })
+    end)
+
+    test("expect.not.toMatchObject", function()
+        expect({ a = 1, b = 2 }).not_:toMatchObject({ a = 1 })
+    end)
 end)

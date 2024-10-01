@@ -1,3 +1,5 @@
+local expect = require("src.expect")
+
 ---@alias DescribeFunc fun(name: string, func: fun(context: TestContext))
 ---@alias TestFunc fun(name: string, func: fun())
 
@@ -153,6 +155,7 @@ local function test(name, func)
 end
 
 return {
+    expect = expect,
     test = test,
     describe = describe,
 }

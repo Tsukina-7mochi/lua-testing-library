@@ -1,6 +1,6 @@
 local describe = require("src.test").describe
 local test = require("src.test").test
-local expect = require("src.expect")
+local expect = require("src.test").expect
 
 describe("toHaveLength", function()
     test("\"123\" haves length 3", function()

@@ -1,6 +1,6 @@
 local describe = require("src.test").describe
 local test = require("src.test").test
-local expect = require("src.expect")
+local expect = require("src.test").expect
 
 describe("toMatchObject", function()
     test("{ a = 1, b = 2 } matches to { a = 1 }", function()

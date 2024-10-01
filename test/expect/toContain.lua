@@ -1,6 +1,6 @@
 local describe = require("src.test").describe
 local test = require("src.test").test
-local expect = require("src.expect")
+local expect = require("src.test").expect
 
 describe("toContain", function()
     test("{ 1, 2, 3 } contains 1", function()

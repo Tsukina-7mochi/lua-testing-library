@@ -1,6 +1,6 @@
 local describe = require("src.test").describe
 local test = require("src.test").test
-local expect = require("src.expect")
+local expect = require("src.test").expect
 
 describe("toBeLessThan", function()
     test("0 is less than 1", function()

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/Tsukina-7mochi/lua-testing-library/compare/v0.1.0-pre2...v0.1.1) (2024-10-01)
+
+
+### Miscellaneous Chores
+
+* bump version ([2d24a09](https://github.com/Tsukina-7mochi/lua-testing-library/commit/2d24a09a8b0a94dfa5cc0d76dc4ea832220bd25c))
+
 ## [0.1.0-pre2](https://github.com/Tsukina-7mochi/lua-testing-library/compare/v0.1.0-pre1...v0.1.0-pre2) (2024-10-01)
 
 

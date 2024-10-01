@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0-pre2](https://github.com/Tsukina-7mochi/lua-testing-library/compare/v0.1.0-pre1...v0.1.0-pre2) (2024-10-01)
+
+
+### Continuous Integration
+
+* update release script ([a506877](https://github.com/Tsukina-7mochi/lua-testing-library/commit/a506877f0113bd0359d70924d87aec9891a431e7))
+
 ## [0.1.0-pre1](https://github.com/Tsukina-7mochi/lua-testing-library/compare/v0.1.0...v0.1.0-pre1) (2024-10-01)
 
 

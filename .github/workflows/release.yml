@@ -1,0 +1,41 @@
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+name: release-please
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+
+    steps:
+      - uses: googleapis/release-please-action@v4
+
+        id: release
+        with:
+          release-type: simple
+
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
+
+      - uses: leafo/gh-actions-lua@v10
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          lua-version: 5.4
+
+      - name: Build
+        if: ${{ steps.release.outputs.release_created }}
+        run: make build
+
+      - name: Upload Artifact
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload ${{ github.ref_name }} ./dist/test.lua

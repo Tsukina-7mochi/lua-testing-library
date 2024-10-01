@@ -1,3 +1,6 @@
 {
-  "Lua.runtime.version": "5.3"
+  "Lua.runtime.version": "5.3",
+  "Lua.workspace.ignoreDir": [
+    "/dist"
+  ]
 }
